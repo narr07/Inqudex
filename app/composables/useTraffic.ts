@@ -188,8 +188,7 @@ export function useTraffic() {
 			const proxyTarget = item.auth ? { url: item.url, basicAuth: item.auth } : item.url
 			const options: any = {
 				connectTimeout: maxTimeoutMs,
-				proxy: { all: proxyTarget },
-				danger: { acceptInvalidCerts: true }
+				proxy: { all: proxyTarget }
 			}
 			const res = await appFetch(testUrl, options)
 			const lat = Date.now() - start
@@ -198,11 +197,12 @@ export function useTraffic() {
 			item.speedCategory = lat < 800 ? 'fast' : lat < 2000 ? 'medium' : 'slow'
 			item.lastChecked = new Date().toLocaleTimeString('id-ID')
 			return res.ok
-		} catch {
+		} catch (e: any) {
 			item.latencyMs = Date.now() - start
 			item.status = 'dead'
 			item.speedCategory = 'slow'
 			item.lastChecked = new Date().toLocaleTimeString('id-ID')
+			console.warn(`[ProxyTest] ${item.url} gagal:`, e?.message || e)
 			return false
 		}
 	}
@@ -357,8 +357,7 @@ export function useTraffic() {
 		const fetchOptions: any = {
 			method: 'GET',
 			headers,
-			connectTimeout: Math.max(5000, config.proxySensitivityMs),
-			danger: { acceptInvalidCerts: true }
+			connectTimeout: Math.max(5000, config.proxySensitivityMs)
 		}
 
 		if (proxy) {
