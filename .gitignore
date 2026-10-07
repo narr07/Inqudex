@@ -1,0 +1,16 @@
+node_modules
+.nuxt
+.output
+dist
+.data
+.env
+.env.*
+*.log
+src-tauri/target
+src-tauri/gen/schemas
+.DS_Store
+Thumbs.db
+*.exe
+.tgrep
+.agents
+.gemini

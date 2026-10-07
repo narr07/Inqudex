@@ -1,0 +1,105 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+@import '@fontsource-variable/bricolage-grotesque';
+
+@theme {
+	--font-sans: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-mono: ui-monospace, 'Cascadia Mono', Consolas, 'Liberation Mono', monospace;
+
+	--color-primary: var(--ui-color-primary-500);
+	--color-secondary: var(--ui-color-secondary-500);
+	--color-success: var(--ui-color-success-500);
+	--color-info: var(--ui-color-info-500);
+	--color-warning: var(--ui-color-warning-500);
+	--color-error: var(--ui-color-error-500);
+}
+
+/* Palette: warm paper + ink, one orange accent (see DESIGN.md). Primary is pushed to the 700
+   shade in light mode so white button text reaches AA contrast (orange-500 on white does not). */
+:root {
+	--ui-radius: 0.375rem;
+	--ui-bg: #f6f4ef;
+	--ui-bg-muted: #efece5;
+	--ui-bg-elevated: #fbfaf7;
+	--ui-bg-accented: #e6e2d8;
+	--ui-border: #d9d4c7;
+	--ui-border-muted: #e6e2d8;
+	--ui-border-accented: #bdb6a4;
+	--ui-text: #1f2a24;
+	--ui-text-highlighted: #121a15;
+	--ui-text-toned: #34423a;
+	--ui-text-muted: #52605a;
+	--ui-text-dimmed: #6b766f;
+	--ink: #1f2a24;
+	--panel: #fbfaf7;
+}
+
+.dark {
+	--ui-bg: #171614;
+	--ui-bg-muted: #1d1c19;
+	--ui-bg-elevated: #22211d;
+	--ui-bg-accented: #2c2a25;
+	--ui-border: #34312b;
+	--ui-border-muted: #2a2823;
+	--ui-border-accented: #4a463d;
+	--ui-text: #e8e4da;
+	--ui-text-highlighted: #f6f3ea;
+	--ui-text-toned: #d3cec1;
+	--ui-text-muted: #aca696;
+	--ui-text-dimmed: #8f8a7c;
+	--ink: #0f1411;
+	--panel: #1d1c19;
+}
+
+html,
+body,
+#__nuxt {
+	height: 100%;
+}
+
+body {
+	background: var(--ui-bg);
+	color: var(--ui-text);
+	font-family: var(--font-sans);
+}
+
+/* Identity motif: a ruler tick row under each page title. Search position is the core metric,
+   so the app draws its own measuring edge. Used once per page, nowhere else. */
+.ruler {
+	height: 10px;
+	background-image:
+		repeating-linear-gradient(to right, var(--ui-border-accented) 0 1px, transparent 1px 8px),
+		repeating-linear-gradient(to right, var(--ui-text-dimmed) 0 1px, transparent 1px 40px);
+	background-size: 100% 5px, 100% 10px;
+	background-repeat: no-repeat;
+	background-position: left bottom, left bottom;
+	max-width: 22rem;
+}
+
+.panel {
+	background: var(--panel);
+	border: 1px solid var(--ui-border);
+	border-radius: 10px;
+}
+
+.log {
+	font-family: var(--font-mono);
+	font-size: 0.8125rem;
+	line-height: 1.5;
+	background: var(--ink);
+	color: #e8e4da;
+	border-radius: 6px;
+}
+
+.num {
+	font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+	outline: 2px solid var(--ui-primary);
+	outline-offset: 2px;
+}
+
+th button {
+	font: inherit;
+}
